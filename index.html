@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>DataNest Analytics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f6f3ec;--ink:#1b2a22;--muted:#56645b;--line:#d9d4c6;--forest:#123524;--forest2:#1b4632;--mint:#9fd6b8;--card:#fbf9f4;
+--head:"Bricolage Grotesque","Public Sans",system-ui,sans-serif;--body:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#efebe2;}}
+:root[data-theme="dark"]{--bg:#efebe2}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(72px + env(safe-area-inset-top,0px))}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.65 var(--body);overflow-x:hidden}
+h1,h2,h3{font-family:var(--head);line-height:1.1;margin:0;letter-spacing:-.02em}
+h2{font-size:clamp(1.9rem,4vw,2.9rem);font-weight:700}
+h3{font-size:1.25rem;font-weight:700}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--mint);outline-offset:3px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+section{padding:96px 0}
+.dark{background:var(--forest);color:#e8f1ea}
+.dark .lead{color:#b9cdbf}
+.lead{color:var(--muted);max-width:60ch;margin-top:18px}
+/* nav */
+header{position:sticky;top:0;z-index:10;background:var(--forest);color:#fff;padding-top:env(safe-area-inset-top,0px)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+.brand{font:700 1.2rem var(--head);text-decoration:none;display:flex;align-items:center;gap:10px}
+.brand svg{width:26px;height:26px}
+nav ul{display:flex;gap:28px;list-style:none;margin:0;padding:0}
+nav a{text-decoration:none;font-size:.95rem;color:#cfe0d4;padding:6px 0;border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
+nav a:hover{color:#fff;border-color:var(--mint)}
+.menu-btn{display:none;background:none;border:1px solid #3d6350;color:#fff;border-radius:4px;padding:8px 12px;font:inherit;cursor:pointer}
+/* buttons */
+.btn{display:inline-block;padding:14px 24px;border-radius:4px;font-weight:600;text-decoration:none;border:2px solid transparent;cursor:pointer;font:600 1rem var(--body);transition:background .2s,color .2s}
+.btn-mint{background:var(--mint);color:var(--forest)}
+.btn-mint:hover{background:#b6e3cb}
+.btn-line{border-color:#4d7a63;color:#fff}
+.btn-line:hover{background:var(--forest2)}
+.btn-dark{background:var(--forest);color:#fff}
+.btn-dark:hover{background:var(--forest2)}
+.btn[aria-disabled="true"]{background:transparent;color:var(--muted);border:2px dashed var(--line);cursor:not-allowed}
+/* hero */
+.hero{padding:88px 0 96px}
+.hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center}
+.hero h1{font-size:clamp(2.6rem,6vw,4.4rem);font-weight:700;color:#fff}
+.hero p.lead{font-size:1.15rem}
+.actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px}
+.viz{background:#0e2b1d;border:1px solid #2c5641;border-radius:6px;padding:20px}
+.viz-top{display:flex;justify-content:space-between;font-size:.8rem;color:#9bb7a4;margin-bottom:14px}
+.viz svg{width:100%;height:auto;display:block}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+.kpi{border:1px solid #2c5641;padding:10px 12px;border-radius:4px}
+.kpi span{display:block;font-size:.72rem;color:#9bb7a4}
+.kpi i{display:block;height:8px;margin-top:8px;background:var(--mint);border-radius:2px}
+.viz-note{font-size:.75rem;color:#7f9d8b;margin-top:12px}
+/* about */
+.about .wrap{display:grid;grid-template-columns:1fr 1.1fr;gap:64px}
+.about-list{display:grid;gap:26px}
+.about-list div{border-left:3px solid var(--mint);padding-left:18px}
+.about-list h3{margin-bottom:4px}
+.about-list p{color:var(--muted)}
+/* services */
+.services{background:#ece7da}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:48px}
+.svc{border-top:2px solid var(--forest);padding-top:22px}
+.svc svg{width:36px;height:36px;stroke:var(--forest);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;margin-bottom:18px}
+.svc h3{margin-bottom:10px}
+.svc p{color:var(--muted);font-size:1rem}
+/* projects */
+.projects .grid2{display:grid;grid-template-columns:1.4fr 1fr;gap:28px;margin-top:48px}
+.case{background:var(--card);border:1px solid var(--line);padding:32px;border-radius:6px;display:flex;flex-direction:column;gap:18px;align-items:flex-start}
+.case.concept{background:transparent;border-style:dashed}
+.tag{display:inline-block;font-size:.85rem;font-weight:600;padding:4px 12px;border-radius:99px;background:var(--mint);color:var(--forest)}
+.concept .tag{background:transparent;border:1px solid var(--muted);color:var(--muted)}
+.tools{list-style:none;padding:0;margin:0;display:flex;gap:8px;flex-wrap:wrap}
+.tools li{border:1px solid var(--line);padding:3px 12px;border-radius:4px;font-size:.9rem;background:#fff}
+.small{font-size:.92rem;color:var(--muted)}
+/* process */
+.steps{list-style:none;margin:56px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;counter-reset:s;position:relative}
+.steps::before{content:"";position:absolute;top:21px;left:0;right:0;height:2px;background:#3d6350}
+.steps li{position:relative;counter-increment:s}
+.steps li::before{content:counter(s);display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--mint);color:var(--forest);font:700 1.1rem var(--head);position:relative;margin-bottom:20px}
+.steps h3{color:#fff;font-size:1.15rem}
+/* contact */
+.contact .wrap{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+form{display:grid;gap:18px}
+label{font-weight:600;font-size:.95rem;display:block;margin-bottom:6px}
+input,textarea{width:100%;font:inherit;padding:12px 14px;border:1px solid #b9b3a3;background:#fff;border-radius:4px;color:var(--ink)}
+textarea{min-height:140px;resize:vertical}
+input:focus,textarea:focus{outline:3px solid var(--mint);border-color:var(--forest)}
+.details{margin:28px 0 0;display:grid;gap:14px}.details dt{font-weight:600;font-size:.9rem;color:var(--muted)}.details dd{margin:0;font-size:1.1rem}.details a{text-underline-offset:3px}
+#status{min-height:1.5em;font-size:.95rem;color:var(--forest);font-weight:500}
+/* footer */
+footer{background:var(--forest);color:#b9cdbf;padding:56px 0 40px;font-size:.95rem}
+.foot{display:grid;grid-template-columns:1.4fr 1fr;gap:40px}
+footer .brand{color:#fff;margin-bottom:12px}
+footer ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+footer a{text-decoration:none}footer a:hover{color:#fff}
+.note{border-top:1px solid #2c5641;margin-top:36px;padding-top:20px;font-size:.88rem}
+/* responsive */
+@media (max-width:960px){
+.hero .wrap,.about .wrap,.contact .wrap,.projects .grid2{grid-template-columns:1fr;gap:40px}
+.grid4{grid-template-columns:1fr 1fr}
+.steps{grid-template-columns:1fr 1fr;row-gap:36px}.steps::before{display:none}
+}
+@media (max-width:720px){
+section{padding:68px 0}
+.menu-btn{display:block}
+nav ul{display:none;position:absolute;left:0;right:0;top:calc(72px + env(safe-area-inset-top,0px));background:var(--forest);flex-direction:column;gap:0;padding:8px 24px 16px;border-top:1px solid #2c5641}
+nav ul.open{display:flex}
+nav li a{display:block;padding:12px 0}
+.grid4,.steps,.foot{grid-template-columns:1fr}
+.kpis{grid-template-columns:1fr 1fr 1fr}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+<header>
+<div class="wrap nav">
+<a class="brand" href="#home" aria-label="DataNest Analytics home"><svg viewBox="0 0 26 26" aria-hidden="true"><rect x="3" y="14" width="5" height="9" fill="#9fd6b8"/><rect x="10.5" y="8" width="5" height="15" fill="#9fd6b8"/><rect x="18" y="3" width="5" height="20" fill="#9fd6b8"/></svg>DataNest Analytics</a>
+<button class="menu-btn" aria-expanded="false" aria-controls="menu">Menu</button>
+<nav aria-label="Main"><ul id="menu">
+<li><a href="#home">Home</a></li><li><a href="#about">About</a></li><li><a href="#services">Services</a></li><li><a href="#projects">Projects</a></li><li><a href="#process">Our Process</a></li><li><a href="#contact">Contact</a></li>
+</ul></nav>
+</div>
+</header>
+<main>
+<section id="home" class="hero dark">
+<div class="wrap">
+<div>
+<h1>Turn data into better decisions.</h1>
+<p class="lead">We explore, clean, analyze, and visualize data to help businesses understand performance and discover meaningful insights.</p>
+<div class="actions"><a class="btn btn-mint" href="#services">Explore Our Services</a><a class="btn btn-line" href="#projects">View Projects</a></div>
+</div>
+<div class="viz" role="img" aria-label="Sample dashboard illustration with summary tiles, a line chart, and bar chart using placeholder data">
+<div class="viz-top"><span>Sample dashboard</span><span>Illustrative data</span></div>
+<div class="kpis"><div class="kpi"><span>Orders</span><i style="width:80%"></i></div><div class="kpi"><span>Customers</span><i style="width:55%"></i></div><div class="kpi"><span>Delivery time</span><i style="width:35%"></i></div></div>
+<svg viewBox="0 0 400 210" aria-hidden="true">
+<g stroke="#2c5641" stroke-width="1"><line x1="0" y1="20" x2="400" y2="20"/><line x1="0" y1="65" x2="400" y2="65"/><line x1="0" y1="110" x2="400" y2="110"/></g>
+<polyline points="0,95 50,80 100,88 150,55 200,62 250,35 300,45 350,22 400,30" fill="none" stroke="#9fd6b8" stroke-width="3" stroke-linejoin="round"/>
+<polyline points="0,100 50,96 100,92 150,90 200,80 250,78 300,70 350,66 400,60" fill="none" stroke="#5f8f76" stroke-width="2" stroke-dasharray="5 5"/>
+<g fill="#9fd6b8"><rect x="10" y="150" width="34" height="55"/><rect x="62" y="132" width="34" height="73"/><rect x="114" y="160" width="34" height="45"/><rect x="166" y="120" width="34" height="85"/><rect x="218" y="140" width="34" height="65"/><rect x="270" y="108" width="34" height="97" opacity=".55"/><rect x="322" y="126" width="34" height="79"/></g>
+</svg>
+<p class="viz-note">Illustration only. Not real results.</p>
+</div>
+</div>
+</section>
+
+<section id="about" class="about">
+<div class="wrap">
+<div>
+<h2>Clarity starts with good data.</h2>
+<p class="lead">DataNest Analytics is a concept studio built around one idea: analysis is only useful when people can follow it. We keep the work simple, documented, and easy to explain.</p>
+</div>
+<div class="about-list">
+<div><h3>Organize raw data</h3><p>Raw files are rarely ready to use. We sort out structure, formats, and gaps first.</p></div>
+<div><h3>Find patterns</h3><p>We look at how the data behaves over time, across groups, and at the edges.</p></div>
+<div><h3>Present useful metrics</h3><p>We choose measures that match the question being asked, and define each one plainly.</p></div>
+<div><h3>Keep it understandable</h3><p>Findings come with the reasoning behind them, in language non-specialists can read.</p></div>
+</div>
+</div>
+</section>
+
+<section id="services" class="services">
+<div class="wrap">
+<h2>Services</h2>
+<p class="lead">Four connected steps, from messy source data to clear reporting.</p>
+<div class="grid4">
+<article class="svc"><svg viewBox="0 0 36 36" aria-hidden="true"><path d="M5 8h26l-10 11v9l-6 3V19z"/></svg><h3>Data Cleaning &amp; Preparation</h3><p>Organize inconsistent, missing, or duplicated data so it is ready for analysis.</p></article>
+<article class="svc"><svg viewBox="0 0 36 36" aria-hidden="true"><circle cx="15" cy="15" r="9"/><path d="M22 22l9 9"/></svg><h3>Exploratory Data Analysis</h3><p>Identify patterns, trends, and potential anomalies before drawing conclusions.</p></article>
+<article class="svc"><svg viewBox="0 0 36 36" aria-hidden="true"><ellipse cx="18" cy="9" rx="11" ry="4"/><path d="M7 9v9c0 2 5 4 11 4s11-2 11-4V9M7 18v9c0 2 5 4 11 4s11-2 11-4v-9"/></svg><h3>SQL &amp; Business Reporting</h3><p>Query datasets and organize business metrics into consistent, repeatable reports.</p></article>
+<article class="svc"><svg viewBox="0 0 36 36" aria-hidden="true"><path d="M5 5v26h26"/><path d="M10 24l7-8 5 5 9-11"/></svg><h3>Dashboards &amp; Visualization</h3><p>Present findings through clear charts and interactive dashboards.</p></article>
+</div>
+</div>
+</section>
+
+<section id="projects" class="projects">
+<div class="wrap">
+<h2>Projects</h2>
+<p class="lead">One active portfolio project and one labelled concept. No client work is shown.</p>
+<div class="grid2">
+<article class="case">
+<span class="tag">In Progress</span>
+<h3>Olist E-Commerce Analytics</h3>
+<p>An analytical project exploring Brazil's public e-commerce dataset, with an emphasis on data exploration, data preparation, customer and order analysis, and business insights.</p>
+<ul class="tools" aria-label="Project tools"><li>Python</li><li>Pandas</li><li>SQL</li><li>Power BI</li></ul>
+<p class="small">Completed so far: data exploration across 9 related datasets with Python and Pandas, plus a review of data quality and table relationships. In progress: preparing the data for SQL and Power BI. Planned: SQL business analysis, a Power BI dashboard, and recommendations. No findings are published yet.</p>
+<a class="btn btn-dark" id="explore" href="https://github.com/pranjallllllll/olist-ecommerce-analytics" target="_blank" rel="noopener noreferrer">Explore Project</a>
+<p class="small">Opens the project repository on GitHub.</p>
+</article>
+<article class="case concept">
+<span class="tag">Demo Concept</span>
+<h3>Sales Reporting Overview</h3>
+<p>A sketch of how a monthly sales report could be structured: key metrics at the top, trends in the middle, and a short notes section for open questions.</p>
+<p class="small">This is a made-up example to show layout. It contains no real data or client.</p>
+</article>
+</div>
+</div>
+</section>
+
+<section id="process" class="dark">
+<div class="wrap">
+<h2>Our process</h2>
+<ol class="steps">
+<li><h3>Understand the question</h3><p class="lead">Agree on what needs answering before touching the data.</p></li>
+<li><h3>Prepare and validate the data</h3><p class="lead">Clean, check, and document what the data does and does not contain.</p></li>
+<li><h3>Analyze patterns and key metrics</h3><p class="lead">Explore trends and calculate the measures that matter.</p></li>
+<li><h3>Present findings clearly</h3><p class="lead">Share results in charts and plain language.</p></li>
+</ol>
+</div>
+</section>
+
+<section id="contact" class="contact">
+<div class="wrap">
+<div>
+<h2>Have a question about your data?</h2>
+<p class="lead">Explore how better data preparation, analysis, and visualization can make information easier to understand.</p>
+<dl class="details"><div><dt>Email</dt><dd><a href="mailto:kpranjalllll744@gmail.com">kpranjalllll744@gmail.com</a></dd></div><div><dt>Phone</dt><dd><a href="tel:+917815087657">+91 78150 87657</a></dd></div><div><dt>Location</dt><dd>Rairangpur, Odisha, India</dd></div></dl>
+<p class="small" style="margin-top:24px">The form is a demo and isn't connected to any email service, so nothing you type is sent or stored. To reach me, use the email or phone above.</p>
+</div>
+<form id="demo-form" novalidate>
+<div><label for="name">Name</label><input id="name" name="name" type="text" autocomplete="name" required></div>
+<div><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required></div>
+<div><label for="msg">Message</label><textarea id="msg" name="message" required></textarea></div>
+<button class="btn btn-dark" type="submit">Try the demo form</button>
+<p id="status" role="status" aria-live="polite"></p>
+</form>
+</div>
+</section>
+</main>
+
+<footer>
+<div class="wrap">
+<div class="foot">
+<div><a class="brand" href="#home">DataNest Analytics</a><p>A concept studio for data cleaning, analysis, reporting, and visualization.</p></div>
+<nav aria-label="Footer"><ul><li><a href="#home">Home</a></li><li><a href="#about">About</a></li><li><a href="#services">Services</a></li><li><a href="#projects">Projects</a></li><li><a href="#process">Our Process</a></li><li><a href="#contact">Contact</a></li></ul></nav>
+</div>
+<p class="note">A fictional business website concept created for an AI web development internship project.</p>
+</div>
+</footer>
+
+<script>
+var btn=document.querySelector('.menu-btn'),menu=document.getElementById('menu');
+btn.addEventListener('click',function(){var o=menu.classList.toggle('open');btn.setAttribute('aria-expanded',o)});
+menu.addEventListener('click',function(e){if(e.target.tagName==='A'){menu.classList.remove('open');btn.setAttribute('aria-expanded',false)}});
+document.getElementById('demo-form').addEventListener('submit',function(e){
+e.preventDefault();var s=document.getElementById('status'),f=e.target;
+if(!f.checkValidity()){s.textContent='Please complete name, a valid email, and a message.';f.reportValidity();return}
+s.textContent='Demo only: no message was sent.';
+});
+</script>
+</body>
+</html>
